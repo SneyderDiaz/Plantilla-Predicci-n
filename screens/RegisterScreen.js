@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Alert, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Alert, StyleSheet, SafeAreaView } from 'react-native';
 import CustomButton from '../components/CustomButton';
+import Icon from 'react-native-vector-icons/MaterialIcons'; // Usamos íconos de Material Icons
 
 export default function RegisterScreen({ navigation }) {
     const [email, setEmail] = useState('');
@@ -23,40 +24,66 @@ export default function RegisterScreen({ navigation }) {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Registro</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Correo electrónico"
-                keyboardType="email-address"
-                value={email}
-                onChangeText={setEmail}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Contraseña"
-                secureTextEntry
-                value={password}
-                onChangeText={setPassword}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Confirmar Contraseña"
-                secureTextEntry
-                value={confirmPassword}
-                onChangeText={setConfirmPassword}
-            />
+        <SafeAreaView style={styles.container}>
+            {/* Logo EIS-SINTEM */}
+            <View style={styles.logoContainer}>
+                <Text style={styles.logoText}>EIS-SINTEM</Text>
+            </View>
+
+            <Text style={styles.title}>CREAR CUENTA</Text>
+
+            {/* Campo de Correo */}
+            <View style={styles.inputContainer}>
+                <Icon name="email" size={20} color="#3376ff" style={styles.inputIcon} />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Correo electrónico"
+                    keyboardType="email-address"
+                    value={email}
+                    onChangeText={setEmail}
+                />
+            </View>
+
+            {/* Campo de Contraseña */}
+            <View style={styles.inputContainer}>
+                <Icon name="lock" size={20} color="#3376ff" style={styles.inputIcon} />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Contraseña"
+                    secureTextEntry
+                    value={password}
+                    onChangeText={setPassword}
+                />
+            </View>
+
+            {/* Campo de Confirmar Contraseña */}
+            <View style={styles.inputContainer}>
+                <Icon name="lock-outline" size={20} color="#3376ff" style={styles.inputIcon} />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Confirmar Contraseña"
+                    secureTextEntry
+                    value={confirmPassword}
+                    onChangeText={setConfirmPassword}
+                />
+            </View>
+
             <CustomButton
                 title="Registrarse"
                 onPress={handleRegister}
             />
-            <Text
-                style={styles.link}
-                onPress={() => navigation.navigate('Login')}
-            >
-                ¿Ya tienes cuenta? Inicia sesión aquí
-            </Text>
-        </View>
+
+            {/* Enlace para iniciar sesión con ícono */}
+            <View style={styles.linkContainer}>
+                <Icon name="login" size={20} color="#1E90FF" />
+                <Text
+                    style={styles.link}
+                    onPress={() => navigation.navigate('Login')}
+                >
+                    ¿Ya tienes cuenta? Inicia sesión aquí
+                </Text>
+            </View>
+        </SafeAreaView>
     );
 }
 
@@ -68,24 +95,50 @@ const styles = StyleSheet.create({
         padding: 16,
         backgroundColor: '#fff',
     },
+    logoContainer: {
+        marginBottom: 40,
+        alignItems: 'center',
+    },
+    logoText: {
+        fontSize: 40,
+        fontWeight: 'bold',
+        color: '#3376ff',
+    },
     title: {
         fontSize: 30,
         fontWeight: 'bold',
         marginBottom: 16,
         color: '#3376ff'
     },
-    input: {
+    inputContainer: {
         width: '80%',
-        height: 40,
+        height: 50,
         borderWidth: 1,
         borderColor: '#ccc',
         borderRadius: 5,
-        padding: 10,
+        flexDirection: 'row',
+        alignItems: 'center',
         marginVertical: 10,
     },
+    inputIcon: {
+        marginLeft: 10,
+    },
+    input: {
+        flex: 1,
+        height: '100%',
+        paddingLeft: 10,
+        fontSize: 16,
+        color: '#000',
+    },
+    linkContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: 20,
+    },
     link: {
-        marginTop: 16,
+        marginLeft: 5,
         color: '#1E90FF',
         textDecorationLine: 'underline',
+        fontSize: 16,
     },
 });

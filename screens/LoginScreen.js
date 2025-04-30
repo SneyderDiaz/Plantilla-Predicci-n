@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Alert, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Alert, StyleSheet, SafeAreaView } from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons'; // Usamos los íconos de Material Icons
 import CustomButton from '../components/CustomButton';
 
 export default function LoginScreen({ navigation }) {
@@ -36,40 +37,59 @@ export default function LoginScreen({ navigation }) {
     // Simulación de login exitoso
     if (normalizedEmail === 'user@gmail.com' && normalizedPassword === 'usuario12345,') {
       Alert.alert('¡Bienvenido!', 'Inicio de sesión exitoso.');
-      navigation.navigate('Inicio'); // Navega a la pantalla principal (Dashboard)
+      navigation.navigate('Dashboard'); // Navega a la pantalla principal (Dashboard)
     } else {
       Alert.alert('Error', 'Credenciales incorrectas.');
     }
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Iniciar Sesión</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Correo electrónico"
-        keyboardType="email-address"
-        value={email}
-        onChangeText={setEmail}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Contraseña"
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-      <CustomButton
-        title="Iniciar Sesión"
-        onPress={handleLogin}
-      />
-      <Text
-        style={styles.link}
-        onPress={() => navigation.navigate('Registro')}
-      >
-        ¿No tienes cuenta? Regístrate aquí
-      </Text>
-    </View>
+    <SafeAreaView style={styles.container}>
+      {/* Logo EIS-SINTEM */}
+      <View style={styles.logoContainer}>
+        <Text style={styles.logoText}>EIS-SINTEM</Text>
+      </View>
+
+      <Text style={styles.title}>INICIAR SESIÓN</Text>
+
+      {/* Campo de Correo */}
+      <View style={styles.inputContainer}>
+        <Icon name="email" size={20} color="#888" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Correo electrónico"
+          keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
+        />
+      </View>
+
+      {/* Campo de Contraseña */}
+      <View style={styles.inputContainer}>
+        <Icon name="lock" size={20} color="#888" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Contraseña"
+          secureTextEntry
+          value={password}
+          onChangeText={setPassword}
+        />
+      </View>
+
+      {/* Botón de Iniciar Sesión */}
+      <CustomButton title="Iniciar Sesión" onPress={handleLogin} />
+
+      {/* Enlace para Registro con Ícono */}
+      <View style={styles.linkContainer}>
+        <Icon name="person-add" size={20} color="#1E90FF" />
+        <Text
+          style={styles.link}
+          onPress={() => navigation.navigate('Registro')}
+        >
+          ¿No tienes cuenta? Regístrate aquí
+        </Text>
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -81,26 +101,51 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#fff',
   },
-  title: {
-    fontSize: 30,
+  logoContainer: {
+    marginBottom: 30,
+    alignItems: 'center',
+  },
+  logoText: {
+    fontSize: 36,
     fontWeight: 'bold',
     color: '#3376ff',
-    marginBottom: 16,
+  },
+  title: {
+    fontSize: 26,
+    fontWeight: '600',
+    color: '#333',
+    marginBottom: 20,
+  },
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '80%',
+    height: 45,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 10,
+    paddingLeft: 10,
+    marginVertical: 10,
+    backgroundColor: '#f9f9f9',
+  },
+  icon: {
+    marginRight: 10,
   },
   input: {
     width: '80%',
     height: 40,
-    borderWidth: 1,
-    borderColor: '#000',
-    borderRadius: 5,
-    padding: 10,
-    marginVertical: 10,
-    backgroundColor: '#fff',
-    color: '#000',
+    fontSize: 16,
+    color: '#333',
+  },
+  linkContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 16,
   },
   link: {
-    marginTop: 16,
+    marginLeft: 5,
     color: '#1E90FF',
     textDecorationLine: 'underline',
+    fontSize: 14,
   },
 });
