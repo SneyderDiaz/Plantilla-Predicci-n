@@ -1,13 +1,45 @@
-# Plantilla Predicción
+#  Plantilla de Predicción - React Native con Expo
 
-## Introducción
-Esta es una plantilla desarrollada en **React Native con Expo**, diseñada para el desarrollo de la aplicacio+on móvil de predicciones. Sigue los pasos a continuación para configurarla correctamente en tu entorno.
+## ✨ Introducción
 
-## Instalación
--npm install
--npx expo install
-### Clonar el repositorio
+**Plantilla de Predicción**, una base de proyecto desarrollada con **React Native y Expo**
 
-### Asegúrate de tener Node.js y Expo CLI instalados.
+---
 
-Para más detalles sobre Expo, visita la documentación oficial.
+## ⚙️ Requisitos Previos
+
+Asegúrate de tener instalados los siguientes componentes en tu entorno de desarrollo:
+
+- [Node.js](https://nodejs.org/) (versión recomendada: >= 14)
+- [Expo CLI](https://docs.expo.dev/workflow/expo-cli/)  
+  Instálalo ejecutando:
+
+```bash
+npm install -g expo-cli
+```
+
+---
+
+## 🚀 Instalación
+
+Sigue estos pasos para poner en marcha el proyecto:
+
+
+### 2. Instalar dependencias
+
+```bash
+npm install
+```
+
+### 3. Iniciar el proyecto con Expo
+
+```bash
+npx expo start
+```
+
+## 📚 Recursos útiles
+
+- [Documentación oficial de Expo](https://docs.expo.dev/)
+- [Guía de inicio con React Native](https://reactnative.dev/docs/getting-started)
+
+
